@@ -1,0 +1,23 @@
+{
+  "name": "graphql-codegen-apollo-cli-issue",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Jakob Nohe <jakob.nohe@meisterplan.com>",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "yarn run download-schema && yarn run codegen",
+    "download-schema": "rover graph introspect https://graphql.eu.meisterplan.com/graphql -H apollographql-client-name:download-schema > schema.graphqls",
+    "codegen": "graphql-codegen -c codegen.ts",
+    "validate-operations": "apollo client:check --clientName=test --includes=\"src/**/*\" --variant=staging"
+  },
+  "devDependencies": {
+    "@apollo/rover": "^0.13.0",
+    "@graphql-codegen/cli": "^3.2.2",
+    "@graphql-codegen/client-preset": "^2.1.1",
+    "apollo": "^2.34.0",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "graphql-tag": "^2.12.6"
+  }
+}
